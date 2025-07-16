@@ -1,7 +1,7 @@
 class RangoNumerico extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' }); // Shadow DOM
+    this.attachShadow({ mode: 'open' }); 
   }
 
   connectedCallback() {
@@ -18,6 +18,21 @@ class RangoNumerico extends HTMLElement {
         <button id="enviar">Ver resultado</button>
       </div>
     `;
+    this.shadowRoot.getElementById('enviar').addEventListener('click', () => this.enviarRango());
 
 }
+
+  enviarRango() {
+    
+    const inputInicio = this.shadowRoot.getElementById('inicio');
+    const inputFin = this.shadowRoot.getElementById('fin');
+    
+    const valorInicio = inputInicio.value;
+    const valorFin = inputFin.value;
+
+    const inicio = Number.parseInt(valorInicio);
+    const fin = Number.parseInt(valorFin);
+
+  }
+
 }
