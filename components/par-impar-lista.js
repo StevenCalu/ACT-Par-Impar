@@ -15,9 +15,27 @@ class ParImparLista extends HTMLElement {
         <ul id="lista"></ul>
       </div>
     `;
+    document.addEventListener('rango-seleccionado', (e) => this.mostrarLista(e.detail));
 
+  }
+    mostrarLista({ inicio, fin }) {
+    const lista = this.shadowRoot.getElementById('lista');
+    lista.innerHTML = ''; 
+    
+    for (let i = inicio; i <= fin; i++) {
+      let item = document.createElement('li');
+      
+      if (i % 2 === 0) {
+        item.textContent = i + ' - Par';
+      } else {
+        item.textContent = i + ' - Impar';
+      }
+
+    lista.appendChild(item);
+  }
   }
 
 }
+customElements.define('par-impar-lista', ParImparLista);
 
 
