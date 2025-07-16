@@ -33,6 +33,30 @@ class RangoNumerico extends HTMLElement {
     const inicio = Number.parseInt(valorInicio);
     const fin = Number.parseInt(valorFin);
 
+
+    if (isNaN(inicio)) {
+      alert("El numero de inicio no es valido.");
+      return; 
+    }
+    
+    if (isNaN(fin)) {
+      alert("El numero de fin no es valido.");
+      return; 
+    }
+    
+    if (inicio > fin) {
+      alert("El numero de inicio debe ser menor o igual al numero final.");
+      return; 
+    }
+
+    const evento = new CustomEvent('rango-seleccionado', {
+      detail: { inicio, fin },
+      bubbles: true,
+      composed: true
+    });
+
+    this.dispatchEvent(evento); 
   }
 
 }
+customElements.define('input-range', RangoNumerico);
